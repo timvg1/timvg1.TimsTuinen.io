@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- PAS HIER DE PAGINATITEL AAN -->
+  <title>Tim's Tuinen – Tuinaanleg & Onderhoud</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sage:   { 50:'#f4f7f4', 100:'#e6ede6', 200:'#cddccc', 300:'#aac4a8', 400:'#80a67d', 500:'#5e875b', 600:'#496b47', 700:'#3b5539', 800:'#304630', 900:'#28392a' },
+            mint:   { 50:'#f0faf5', 100:'#dcf4e9', 200:'#bbe8d4', 300:'#8dd5b6', 400:'#57bb92', 500:'#33a074', 600:'#238c60', 700:'#1c7050', 800:'#1a5b42', 900:'#174b38' },
+            cream:  '#fafaf7',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+          },
+          backdropBlur: { xs: '2px' },
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- Formspree AJAX library -->
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+  <style>
+    :root {
+      --sage-light: #e6ede6;
+      --sage-mid:   #5e875b;
+      --mint-pop:   #33a074;
+      --cream:      #fafaf7;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: #2a3328; overflow-x: hidden; }
+
+    /* ── Scroll-reveal ─────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ── Glass card ─────────────────────────────────── */
+    .glass {
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(14px) saturate(1.4);
+      -webkit-backdrop-filter: blur(14px) saturate(1.4);
+      border: 1px solid rgba(255,255,255,.7);
+    }
+    .glass-dark {
+      background: rgba(90,130,86,.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(130,180,120,.25);
+    }
+
+    /* ── Nav blur ───────────────────────────────────── */
+    #navbar {
+      background: rgba(250,250,247,.75);
+      backdrop-filter: blur(18px) saturate(1.6);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      border-bottom: 1px solid rgba(200,220,195,.4);
+      transition: box-shadow .3s;
+    }
+    #navbar.scrolled { box-shadow: 0 4px 30px rgba(60,100,55,.10); }
+
+    /* ── Hero background ────────────────────────────── */
+    #hero {
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(141,213,182,.35) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(170,196,168,.28) 0%, transparent 65%),
+        var(--cream);
+    }
+
+    /* ── Section alt bg ─────────────────────────────── */
+    .bg-organic {
+      background:
+        radial-gradient(ellipse 70% 60% at 85% 50%, rgba(141,213,182,.18) 0%, transparent 65%),
+        #f4f7f4;
+    }
+
+    /* ── Blob decoration ────────────────────────────── */
+    .blob {
+      border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+      animation: morphBlob 10s ease-in-out infinite alternate;
+    }
+    @keyframes morphBlob {
+      0%   { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+      50%  { border-radius: 45% 55% 38% 62% / 60% 40% 65% 35%; }
+      100% { border-radius: 58% 42% 48% 52% / 42% 62% 38% 58%; }
+    }
+
+    /* ── Portfolio grid ─────────────────────────────── */
+    .portfolio-item {
+      overflow: hidden;
+      border-radius: 1.25rem;
+      position: relative;
+      cursor: pointer;
+    }
+    .portfolio-item .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(51,160,116,.0) 50%, rgba(51,160,116,.75) 100%);
+      opacity: 0; transition: opacity .4s;
+      display: flex; align-items: flex-end; padding: 1.25rem;
+    }
+    .portfolio-item:hover .overlay { opacity: 1; }
+    .portfolio-item img { transition: transform .5s; width: 100%; height: 100%; object-fit: cover; }
+    .portfolio-item:hover img { transform: scale(1.06); }
+
+    /* ── Testimonial card ───────────────────────────── */
+    .testimonial-card {
+      transition: transform .3s, box-shadow .3s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(60,100,55,.12);
+    }
+
+    /* ── Service card ───────────────────────────────── */
+    .service-card {
+      transition: transform .3s, box-shadow .3s;
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.85);
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(60,100,55,.14); }
+    .service-card .icon-wrap {
+      background: linear-gradient(135deg, #cddccc 0%, #bbe8d4 100%);
+      transition: transform .3s;
+    }
+    .service-card:hover .icon-wrap { transform: scale(1.1) rotate(4deg); }
+
+    /* ── Form ───────────────────────────────────────── */
+    .form-input {
+      background: rgba(255,255,255,.8);
+      border: 1.5px solid rgba(170,196,168,.5);
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--mint-pop);
+      box-shadow: 0 0 0 3px rgba(51,160,116,.15);
+    }
+
+    /* ── Mobile menu ────────────────────────────────── */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+
+    /* ── Star rating ────────────────────────────────── */
+    .stars { color: #f5a623; letter-spacing: .05em; }
+
+    /* ── CTA button ─────────────────────────────────── */
+    .btn-primary {
+      background: linear-gradient(135deg, #5e875b 0%, #33a074 100%);
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 6px 20px rgba(51,160,116,.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(51,160,116,.45); }
+
+    /* ── Divider leaf ───────────────────────────────── */
+    .leaf-divider { color: var(--sage-mid); opacity: .35; }
+
+    /* ── Cert badge ─────────────────────────────────── */
+    .cert-badge {
+      background: rgba(255,255,255,.6);
+      border: 1px solid rgba(141,213,182,.5);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body class="font-body">
+
+<!-- ═══════════════════════════════════════════════════
+     NAVIGATIE – sticky met glassmorphism blur
+═══════════════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 px-6 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+
+    <!-- PAS HIER DE LOGO-NAAM AAN -->
+    <a href="#hero" class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-sage-400 to-mint-500 flex items-center justify-center">
+        <i data-lucide="leaf" class="w-4 h-4 text-white"></i>
+      </div>
+      <span class="font-display font-bold text-sage-800 text-xl tracking-tight">Tim's Tuinen</span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="hidden md:flex items-center gap-7 text-sm font-medium text-sage-700">
+      <li><a href="#diensten" class="hover:text-mint-600 transition-colors">Diensten</a></li>
+      <li><a href="#over"     class="hover:text-mint-600 transition-colors">Over Tim</a></li>
+      <li><a href="#portfolio" class="hover:text-mint-600 transition-colors">Portfolio</a></li>
+      <li><a href="#reviews"  class="hover:text-mint-600 transition-colors">Reviews</a></li>
+      <li>
+        <a href="#contact" class="btn-primary text-white px-5 py-2 rounded-full text-sm font-semibold">
+          Contact
+        </a>
+      </li>
+    </ul>
+
+    <!-- Hamburger (mobiel) -->
+    <button id="hamburger" class="md:hidden p-2 rounded-lg hover:bg-sage-100 transition-colors" aria-label="Menu openen">
+      <i data-lucide="menu" class="w-5 h-5 text-sage-700"></i>
+    </button>
+  </div>
+
+  <!-- Mobiel uitklap-menu -->
+  <div id="mobile-menu" class="flex-col md:hidden bg-white/90 backdrop-blur-md rounded-2xl mt-2 mx-0 py-4 px-6 gap-4 shadow-xl border border-sage-100">
+    <a href="#diensten"  class="text-sage-700 hover:text-mint-600 font-medium" onclick="closeMobileMenu()">Diensten</a>
+    <a href="#over"      class="text-sage-700 hover:text-mint-600 font-medium" onclick="closeMobileMenu()">Over Tim</a>
+    <a href="#portfolio" class="text-sage-700 hover:text-mint-600 font-medium" onclick="closeMobileMenu()">Portfolio</a>
+    <a href="#reviews"   class="text-sage-700 hover:text-mint-600 font-medium" onclick="closeMobileMenu()">Reviews</a>
+    <a href="#contact"   class="btn-primary text-white px-5 py-2 rounded-full text-sm font-semibold text-center" onclick="closeMobileMenu()">Contact opnemen</a>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════
+     HERO SECTIE
+═══════════════════════════════════════════════════ -->
+<section id="hero" class="min-h-screen flex items-center pt-20 pb-16 px-6 relative overflow-hidden">
+
+  <!-- Decoratieve blob achtergrond -->
+  <div class="blob absolute -top-20 -right-32 w-96 h-96 bg-mint-200/40 pointer-events-none"></div>
+  <div class="blob absolute bottom-0 -left-24 w-72 h-72 bg-sage-200/40 pointer-events-none" style="animation-delay:-4s"></div>
+
+  <div class="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+
+    <!-- Tekst links -->
+    <div>
+      <!-- PAS HIER DE HERO-TEKST AAN -->
+      <div class="reveal inline-flex items-center gap-2 bg-sage-100/80 backdrop-blur-sm text-sage-700 text-xs font-semibold px-4 py-1.5 rounded-full border border-sage-200 mb-6">
+        <i data-lucide="sprout" class="w-3.5 h-3.5"></i>
+        <span>VHG-Gecertificeerd hoveniersbedrijf</span>
+      </div>
+
+      <!-- PAS HIER DE HOOFDTITEL AAN -->
+      <h1 class="reveal reveal-delay-1 font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-sage-900 mb-6">
+        Hoi, ik ben<br/>
+        <em class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-sage-600 to-mint-500">Tim</em> 👋
+      </h1>
+
+      <!-- PAS HIER DE SUBTITEL AAN -->
+      <p class="reveal reveal-delay-2 text-sage-600 text-lg md:text-xl font-light leading-relaxed mb-8 max-w-lg">
+        Ik geef jouw tuin de aandacht die het verdient. Van ontwerp tot aanleg en onderhoud — met passie voor groen en oog voor detail.
+      </p>
+
+      <div class="reveal reveal-delay-3 flex flex-wrap gap-4">
+        <!-- PAS HIER DE KNOPTEKSTEN AAN -->
+        <a href="#portfolio" class="btn-primary text-white px-8 py-3.5 rounded-full font-semibold flex items-center gap-2">
+          <i data-lucide="images" class="w-4 h-4"></i>
+          Bekijk mijn werk
+        </a>
+        <a href="#contact" class="glass text-sage-700 px-8 py-3.5 rounded-full font-semibold hover:bg-white/80 transition-colors border border-sage-200 flex items-center gap-2">
+          <i data-lucide="phone" class="w-4 h-4"></i>
+          Neem contact op
+        </a>
+      </div>
+
+      <!-- Snelstatistieken -->
+      <div class="reveal reveal-delay-4 flex gap-8 mt-12">
+        <!-- PAS HIER DE STATISTIEKEN AAN -->
+        <div>
+          <p class="font-display text-3xl font-bold text-sage-800">6+</p>
+          <p class="text-sage-500 text-sm">Jaar ervaring</p>
+        </div>
+        <div class="w-px bg-sage-200"></div>
+        <div>
+          <p class="font-display text-3xl font-bold text-sage-800">3</p>
+          <p class="text-sage-500 text-sm">Jaar eigen bedrijf</p>
+        </div>
+        <div class="w-px bg-sage-200"></div>
+        <div>
+          <p class="font-display text-3xl font-bold text-sage-800">100%</p>
+          <p class="text-sage-500 text-sm">Tevreden klanten</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Foto / illustratie rechts -->
+    <div class="reveal reveal-delay-2 relative flex justify-center">
+      <div class="relative w-72 h-72 md:w-96 md:h-96">
+        <!-- Achtergrond blob -->
+        <div class="blob absolute inset-0 bg-gradient-to-br from-sage-200 to-mint-200 opacity-60"></div>
+        <!-- Placeholder voor profielfoto -->
+        <!-- PAS HIER DE PROFIELFOTO-URL AAN: vervang de kleur-div door <img src="jouw-foto.jpg" class="..." /> -->
+        <div class="absolute inset-4 rounded-3xl overflow-hidden glass flex flex-col items-center justify-center gap-3">
+          <div class="w-20 h-20 bg-gradient-to-br from-sage-300 to-mint-400 rounded-full flex items-center justify-center">
+            <i data-lucide="user" class="w-10 h-10 text-white"></i>
+          </div>
+          <p class="text-sage-600 text-sm font-medium">📸 Voeg hier jouw foto in</p>
+          <p class="text-sage-400 text-xs px-6 text-center">Vervang dit blok door een &lt;img&gt; tag met jouw profielfoto</p>
+        </div>
+        <!-- Zwevende badge -->
+        <div class="absolute -bottom-4 -left-4 glass rounded-2xl px-4 py-3 shadow-xl">
+          <div class="flex items-center gap-2">
+            <i data-lucide="award" class="w-5 h-5 text-mint-500"></i>
+            <div>
+              <p class="text-xs font-semibold text-sage-800">VHG Gecertificeerd</p>
+              <p class="text-xs text-sage-500">Erkend hoveniersbedrijf</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     DIENSTEN SECTIE
+═══════════════════════════════════════════════════ -->
+<section id="diensten" class="py-24 px-6 bg-organic">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Sectieheader -->
+    <div class="reveal text-center mb-16">
+      <p class="text-mint-600 text-sm font-semibold uppercase tracking-widest mb-3">Professioneel tuinontwerp met een persoonlijke touch</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-sage-900 mb-4">Mijn Diensten</h2>
+      <p class="text-sage-500 max-w-xl mx-auto text-lg font-light">Ontdek onze brede waaier aan hoveniersdiensten, gericht op vakmanschap en uw tevredenheid.</p>
+    </div>
+
+    <!-- Diensten grid -->
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- ── Dienst 1 ── PAS HIER DE TEKST AAN -->
+      <div class="reveal reveal-delay-1 service-card rounded-3xl p-8 shadow-lg">
+        <div class="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="shovel" class="w-7 h-7 text-sage-700"></i>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-sage-900 mb-3">Tuinaanleg</h3>
+        <p class="text-sage-500 leading-relaxed mb-5">
+          Wij leggen uw droomtuin aan, afgestemd op uw wensen en de omgeving.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sage-600 text-sm"><i data-lucide="check" class="w-4 h-4 text-mint-500"></i> Op maat gemaakte tuinen</li>
+          <li class="flex items-center gap-2 text-sage-600 text-sm"><i data-lucide="check" class="w-4 h-4 text-mint-500"></i> Nette uitvoering en afwerking</li>
+          <li class="flex items-center gap-2 text-sage-600 text-sm"><i data-lucide="check" class="w-4 h-4 text-mint-500"></i> Sfeervolle beplanting</li>
+        </ul>
+      </div>
+
+      <!-- ── Dienst 2 ── PAS HIER DE TEKST AAN -->
+      <div class="reveal reveal-delay-2 service-card rounded-3xl p-8 shadow-lg">
+        <div class="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="home" class="w-7 h-7 text-sage-700"></i>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-sage-900 mb-3">Veranda & Terras</h3>
+        <p class="text-sage-500 leading-relaxed mb-5">
+          Wij bouwen duurzame veranda’s en terrassen voor extra leefruimte buiten.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sage-600 text-sm"><i data-lucide="check" class="w-4 h-4 text-mint-500"></i> Duurzame constructies</li>
+          <li class="flex items-center gap-2 text-sage-600 text-sm"><i data-lucide="check" class="w-4 h-4 text-mint-500"></i> Strakke afwerking</li>
+          <li class="flex items-center gap-2 text-sage-600 text-sm"><i data-lucide="check" class="w-4 h-4 text-mint-500"></i> Meubelvriendelijke indeling</li>
+        </ul>
+      </div>
+
+      <!-- ── Dienst 3 ── PAS HIER DE TEKST AAN -->
+      <div class="reveal reveal-delay-3 service-card rounded-3xl p-8 shadow-lg">
+        <div class="icon-wrap w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="scissors" class="w-7 h-7 text-sage-700"></i>
+        </div>
+        <h3 class="font-display text-2xl font-bold text-sage-900 mb-3">Tuinonderhoud</h3>
+        <p class="text-sage-500 leading-relaxed mb-5">
+          Regelmatig onderhoud zorgt voor een gezonde en aantrekkelijke tuin het hele jaar.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-sage-600 text-sm"><i data-lucide="check" class="w-4 h-4 text-mint-500"></i> Maaien en snoeien</li>
+          <li class="flex items-center gap-2 text-sage-600 text-sm"><i data-lucide="check" class="w-4 h-4 text-mint-500"></i> Onkruidbestrijding</li>
+          <li class="flex items-center gap-2 text-sage-600 text-sm"><i data-lucide="check" class="w-4 h-4 text-mint-500"></i> Gezonde beplanting</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="reveal text-center mt-12 max-w-3xl mx-auto">
+      <p class="text-sage-700 text-lg font-medium mb-2">Kwaliteit en vakmanschap voor uw ideale tuin</p>
+      <p class="text-sage-500">Tim’s Tuinen staat voor persoonlijke aandacht, creativiteit en duurzaamheid. Onze missie is het realiseren van sfeervolle buitenruimtes die passen bij uw wensen en levensstijl.</p>
+      <p class="text-sage-500 mt-4">Ontwerp en onderhoud uw droomtuin met onze experts.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     OVER TIM SECTIE
+═══════════════════════════════════════════════════ -->
+<section id="over" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+    <!-- Visuele kant – groene kaart -->
+    <div class="reveal order-2 md:order-1 relative">
+      <div class="blob bg-gradient-to-br from-sage-100 to-mint-100 w-full aspect-square rounded-3xl flex flex-col items-center justify-center gap-6 p-10 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-40 h-40 bg-mint-200/40 blob"></div>
+        <!-- PAS HIER DE FOTO VAN TIM AAN (vervang het blok hieronder) -->
+        <div class="w-32 h-32 bg-gradient-to-br from-sage-400 to-mint-500 rounded-full flex items-center justify-center shadow-xl">
+          <i data-lucide="user" class="w-16 h-16 text-white"></i>
+        </div>
+        <!-- PAS HIER DE NAAM EN FUNCTIETITEL AAN -->
+        <div class="text-center">
+          <p class="font-display text-2xl font-bold text-sage-900">Tim van der Berg</p>
+          <p class="text-mint-600 font-medium">Hovenier & Eigenaar</p>
+        </div>
+        <!-- Badges -->
+        <div class="flex flex-wrap gap-3 justify-center">
+          <span class="cert-badge text-sage-700 text-xs font-semibold px-3 py-1.5 rounded-full">🌿 VHG Lid</span>
+          <span class="cert-badge text-sage-700 text-xs font-semibold px-3 py-1.5 rounded-full">⭐ 6 jaar vak</span>
+          <span class="cert-badge text-sage-700 text-xs font-semibold px-3 py-1.5 rounded-full">🏡 3 jaar eigen bedrijf</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tekst kant -->
+    <div class="reveal reveal-delay-1 order-1 md:order-2">
+      <p class="text-mint-600 text-sm font-semibold uppercase tracking-widest mb-3">Vakbekwame hoveniers voor uw perfecte buitenruimte</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-sage-900 mb-6 leading-tight">
+        Bij Tim’s Tuinen maken we tuinen<br/>waar je graag tijd doorbrengt.
+      </h2>
+      <div class="space-y-4 text-sage-600 leading-relaxed text-lg font-light">
+        <p>
+          Al <strong class="font-semibold text-sage-800">6 jaar</strong> werk ik dagelijks in het hoveniersvak en ik leid inmiddels al <strong class="font-semibold text-sage-800">3 jaar</strong> mijn eigen hoveniersbedrijf.
+        </p>
+        <p>
+          Samen creëren wij uw droomtuin. Met vakmanschap en een persoonlijke aanpak creëren we groene, sfeervolle plekken die helemaal bij jou passen.
+        </p>
+        <p>
+          Wat ik belangrijk vind, is persoonlijk contact en duidelijke communicatie, zodat jij precies weet waar je aan toe bent en kunt rekenen op een tuin waar je echt van kunt genieten.
+        </p>
+      </div>
+      <div class="mt-8 grid grid-cols-1 gap-4">
+        <div class="glass-dark rounded-2xl p-5">
+          <p class="font-semibold text-sage-800">Professionele tuinaanleg met persoonlijke aandacht</p>
+          <p class="text-sage-500 text-sm mt-2">Ontdek onze brede waaier aan hoveniersdiensten, waarbij kwaliteit en tevredenheid centraal staan.</p>
+        </div>
+      </div>
+
+      <!-- Kernwaarden -->
+      <div class="mt-8 grid grid-cols-2 gap-4">
+        <!-- PAS HIER DE KERNWAARDEN AAN -->
+        <div class="glass-dark rounded-2xl p-4">
+          <i data-lucide="heart-handshake" class="w-6 h-6 text-mint-600 mb-2"></i>
+          <p class="font-semibold text-sage-800 text-sm">Persoonlijk contact</p>
+        </div>
+        <div class="glass-dark rounded-2xl p-4">
+          <i data-lucide="shield-check" class="w-6 h-6 text-mint-600 mb-2"></i>
+          <p class="font-semibold text-sage-800 text-sm">Vakmanschap</p>
+        </div>
+        <div class="glass-dark rounded-2xl p-4">
+          <i data-lucide="clock" class="w-6 h-6 text-mint-600 mb-2"></i>
+          <p class="font-semibold text-sage-800 text-sm">Altijd op tijd</p>
+        </div>
+        <div class="glass-dark rounded-2xl p-4">
+          <i data-lucide="leaf" class="w-6 h-6 text-mint-600 mb-2"></i>
+          <p class="font-semibold text-sage-800 text-sm">Duurzaam werken</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CERTIFICATEN SECTIE
+═══════════════════════════════════════════════════ -->
+<section id="certificaten" class="py-20 px-6 bg-organic">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="reveal text-center mb-12">
+      <p class="text-mint-600 text-sm font-semibold uppercase tracking-widest mb-3">Vertrouwd vakmanschap, bewezen kwaliteit</p>
+      <h2 class="font-display text-4xl font-bold text-sage-900 mb-3">Gecertificeerd & Betrouwbaar</h2>
+      <p class="text-sage-500 font-light text-lg">Hier tonen we onze belangrijkste certificaten, veiligheidsstandaarden en branchekenmerken die onze betrouwbaarheid onderstrepen.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- PAS HIER DE CERTIFICATEN-TEKSTEN AAN -->
+      <div class="reveal reveal-delay-1 glass rounded-3xl p-8 text-center shadow-md">
+        <div class="w-14 h-14 bg-gradient-to-br from-sage-200 to-mint-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="badge-check" class="w-7 h-7 text-sage-700"></i>
+        </div>
+        <h3 class="font-semibold text-sage-900 text-lg mb-2">VHG-gecertificeerd hoveniersbedrijf</h3>
+        <p class="text-sage-500 text-sm leading-relaxed">Tim’s Tuinen is VHG-gecertificeerd, wat staat voor vakbekwaamheid en professionaliteit binnen de hoveniersbranche.</p>
+      </div>
+
+      <div class="reveal reveal-delay-2 glass rounded-3xl p-8 text-center shadow-md">
+        <div class="w-14 h-14 bg-gradient-to-br from-sage-200 to-mint-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="hard-hat" class="w-7 h-7 text-sage-700"></i>
+        </div>
+        <h3 class="font-semibold text-sage-900 text-lg mb-2">Veiligheid en milieubewustzijn</h3>
+        <p class="text-sage-500 text-sm leading-relaxed">Onze werkwijze voldoet aan strenge veiligheidsnormen en milieuregels, wat zorgt voor een duurzame en verantwoorde uitvoering.</p>
+      </div>
+
+      <div class="reveal reveal-delay-3 glass rounded-3xl p-8 text-center shadow-md">
+        <div class="w-14 h-14 bg-gradient-to-br from-sage-200 to-mint-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="smile" class="w-7 h-7 text-sage-700"></i>
+        </div>
+        <h3 class="font-semibold text-sage-900 text-lg mb-2">Ervaren en gediplomeerd team</h3>
+        <p class="text-sage-500 text-sm leading-relaxed">Alle medewerkers zijn goed opgeleid en beschikken over de juiste diploma’s om hoogwaardige tuindiensten te leveren.</p>
+      </div>
+
+    </div>
+    <div class="reveal text-center mt-8">
+      <p class="font-semibold text-sage-800">Klanttevredenheid gegarandeerd</p>
+      <p class="text-sage-500 max-w-2xl mx-auto mt-2">We werken uitsluitend met tevreden klanten; hun positieve ervaringen versterken ons vertrouwen en onze reputatie.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PORTFOLIO SECTIE
+═══════════════════════════════════════════════════ -->
+<section id="portfolio" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal text-center mb-16">
+      <p class="text-mint-600 text-sm font-semibold uppercase tracking-widest mb-3">Ontdek de mooiste tuinen met Tim’s Tuinen</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-sage-900 mb-4">Portfolio</h2>
+      <p class="text-sage-500 max-w-xl mx-auto text-lg font-light">Hier vindt u een selectie foto’s die onze expertise en passie voor tuinen perfect weergeven.</p>
+    </div>
+
+    <!-- Portfolio grid – vervang de placeholder-blokken door echte foto's -->
+    <!-- PAS HIER DE PORTFOLIO-FOTO'S AAN: vervang elke placeholder-div door een <img src="..."> -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+      <!-- Project 1 -->
+      <div class="reveal reveal-delay-1 portfolio-item col-span-2 md:col-span-2 h-72 md:h-96">
+        <div class="w-full h-full bg-gradient-to-br from-sage-200 to-mint-300 flex flex-col items-center justify-center gap-3">
+          <i data-lucide="image" class="w-10 h-10 text-sage-500"></i>
+          <!-- PAS HIER DE PROJECTNAAM AAN -->
+          <p class="text-sage-600 font-semibold">📸 Project 1 – Tuinaanleg Hilversum</p>
+          <p class="text-sage-400 text-xs">Voeg hier jouw foto in</p>
+        </div>
+        <div class="overlay">
+          <p class="text-white font-display text-xl font-bold">Tuinaanleg Hilversum</p>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="reveal reveal-delay-2 portfolio-item h-72 md:h-96">
+        <div class="w-full h-full bg-gradient-to-br from-mint-200 to-sage-300 flex flex-col items-center justify-center gap-3">
+          <i data-lucide="image" class="w-8 h-8 text-sage-500"></i>
+          <!-- PAS HIER DE PROJECTNAAM AAN -->
+          <p class="text-sage-600 font-semibold text-center text-sm px-4">📸 Project 2 – Terras Amsterdam</p>
+        </div>
+        <div class="overlay">
+          <p class="text-white font-display text-lg font-bold">Terras Amsterdam</p>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="reveal reveal-delay-1 portfolio-item h-60">
+        <div class="w-full h-full bg-gradient-to-br from-sage-100 to-sage-300 flex flex-col items-center justify-center gap-3">
+          <i data-lucide="image" class="w-8 h-8 text-sage-500"></i>
+          <p class="text-sage-600 font-semibold text-center text-sm px-4">📸 Project 3</p>
+        </div>
+        <div class="overlay">
+          <p class="text-white font-display text-lg font-bold">Veranda Almere</p>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="reveal reveal-delay-2 portfolio-item h-60">
+        <div class="w-full h-full bg-gradient-to-br from-mint-100 to-mint-300 flex flex-col items-center justify-center gap-3">
+          <i data-lucide="image" class="w-8 h-8 text-mint-600"></i>
+          <p class="text-sage-600 font-semibold text-center text-sm px-4">📸 Project 4</p>
+        </div>
+        <div class="overlay">
+          <p class="text-white font-display text-lg font-bold">Onderhoud Amersfoort</p>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="reveal reveal-delay-3 portfolio-item h-60">
+        <div class="w-full h-full bg-gradient-to-br from-sage-200 to-mint-200 flex flex-col items-center justify-center gap-3">
+          <i data-lucide="image" class="w-8 h-8 text-sage-500"></i>
+          <p class="text-sage-600 font-semibold text-center text-sm px-4">📸 Project 5</p>
+        </div>
+        <div class="overlay">
+          <p class="text-white font-display text-lg font-bold">Tuinaanleg Utrecht</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reveal text-center mt-10">
+      <p class="text-sage-400 text-sm">✨ Wil je meer projecten zien? Neem contact op voor ons volledige portfolio.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     TESTIMONIALS / REVIEWS SECTIE
+═══════════════════════════════════════════════════ -->
+<section id="reviews" class="py-24 px-6 bg-organic overflow-hidden">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="reveal text-center mb-16">
+      <p class="text-mint-600 text-sm font-semibold uppercase tracking-widest mb-3">Ervaringen</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-sage-900 mb-4">Wat onze klanten zeggen</h2>
+      <p class="text-sage-500 text-lg font-light">De ervaringen van onze klanten spreken voor zich. Ontdek hoe zij onze service en samenwerking hebben ervaren.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- PAS HIER DE REVIEW-TEKSTEN EN NAMEN AAN -->
+
+      <!-- Review 1 – Jan Bosman -->
+      <div class="reveal reveal-delay-1 testimonial-card glass rounded-3xl p-8 shadow-md">
+        <div class="stars text-xl mb-4">★★★★★</div>
+        <p class="text-sage-700 text-lg leading-relaxed mb-6 font-light italic">
+          "Tim (en team) heeft mijn oprit bestraat en een aantal bomen gesnoeid. Ik ben supertevreden met het resultaat. Tim levert professioneel vakkundig werk, komt afspraken goed na en werkt erg netjes (ruimt alles keurig op en voert het af). Echt een aanrader."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-sage-300 to-mint-400 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">JB</span>
+          </div>
+          <div>
+            <p class="font-semibold text-sage-800">Jan Bosman</p>
+            <p class="text-sage-400 text-xs">Heiloo</p>
+          </div>
+          <i data-lucide="quote" class="w-8 h-8 text-sage-200 ml-auto"></i>
+        </div>
+      </div>
+
+      <!-- Review 2 – Henny Terpstra-de Vries -->
+      <div class="reveal reveal-delay-2 testimonial-card glass rounded-3xl p-8 shadow-md">
+        <div class="stars text-xl mb-4">★★★★★</div>
+        <p class="text-sage-700 text-lg leading-relaxed mb-6 font-light italic">
+          "Tim heeft bij ons een nieuwe schutting gemaakt. Wij kregen een duidelijke gespecificeerde offerte! De communicatie was duidelijk en helder. De schutting is vakkundig en goed geplaatst. Ziet er mooi strak uit. Verder was het contact plezierig. Wij zijn zeer tevreden."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-mint-300 to-sage-400 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">HT</span>
+          </div>
+          <div>
+            <p class="font-semibold text-sage-800">Henny Terpstra-de Vries</p>
+            <p class="text-sage-400 text-xs">Alkmaar</p>
+          </div>
+          <i data-lucide="quote" class="w-8 h-8 text-sage-200 ml-auto"></i>
+        </div>
+      </div>
+
+      <!-- Review 3 – Vivian -->
+      <div class="reveal reveal-delay-1 testimonial-card glass rounded-3xl p-8 shadow-md">
+        <div class="stars text-xl mb-4">★★★★★</div>
+        <p class="text-sage-700 text-lg leading-relaxed mb-6 font-light italic">
+          "Tim is echt een vakman. Een harde werker met oog voor detail. Hij heeft bij ons nieuwe tegels in de serre gelegd en dat heeft hij ontzettend mooi gedaan, het ligt er super strak in. Wij zijn echt heel blij met het eindresultaat! Volgende keer bellen wij zeker weer Tim."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-sage-200 to-mint-500 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">V</span>
+          </div>
+          <div>
+            <p class="font-semibold text-sage-800">Vivian</p>
+            <p class="text-sage-400 text-xs">Heiloo</p>
+          </div>
+          <i data-lucide="quote" class="w-8 h-8 text-sage-200 ml-auto"></i>
+        </div>
+      </div>
+
+      <!-- Review 4 – Susan -->
+      <div class="reveal reveal-delay-2 testimonial-card glass rounded-3xl p-8 shadow-md">
+        <div class="stars text-xl mb-4">★★★★★</div>
+        <p class="text-sage-700 text-lg leading-relaxed mb-6 font-light italic">
+          "Wij hebben Tim gevraagd voor zowel de aanleg als het onderhoud. Vanaf dag één merkte je de passie en toewijding. Onze buren vragen inmiddels ook al naar zijn contactgegevens!"
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-gradient-to-br from-mint-400 to-sage-300 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">S</span>
+          </div>
+          <div>
+            <!-- PAS HIER DE NAAM EN LOCATIE AAN -->
+            <p class="font-semibold text-sage-800">Susan</p>
+            <p class="text-sage-400 text-xs">Almere</p>
+          </div>
+          <i data-lucide="quote" class="w-8 h-8 text-sage-200 ml-auto"></i>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CONTACT SECTIE
+═══════════════════════════════════════════════════ -->
+<section id="contact" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="reveal text-center mb-16">
+      <!-- PAS HIER DE CONTACT-SECTIETITEL AAN -->
+      <p class="text-mint-600 text-sm font-semibold uppercase tracking-widest mb-3">Laten we kennismaken</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold text-sage-900 mb-4">Neem Contact Op</h2>
+      <p class="text-sage-500 text-lg font-light max-w-xl mx-auto">Heb je een vraag of wil je een vrijblijvende offerte? Vul het formulier in en ik neem zo snel mogelijk contact met je op.</p>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-10">
+
+      <!-- Contactinfo links -->
+      <div class="reveal md:col-span-2 space-y-6">
+
+        <!-- PAS HIER DE CONTACTGEGEVENS AAN -->
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 bg-sage-100 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="phone" class="w-5 h-5 text-sage-600"></i>
+          </div>
+          <div>
+            <p class="font-semibold text-sage-800 text-sm mb-1">Telefoon</p>
+            <!-- PAS HIER HET TELEFOONNUMMER AAN -->
+            <a href="tel:+31612345678" class="text-sage-500 hover:text-mint-600 transition-colors">06-12 34 56 78</a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 bg-sage-100 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="mail" class="w-5 h-5 text-sage-600"></i>
+          </div>
+          <div>
+            <p class="font-semibold text-sage-800 text-sm mb-1">E-mail</p>
+            <!-- PAS HIER HET E-MAILADRES AAN -->
+            <a href="mailto:info@timstuinen.nl" class="text-sage-500 hover:text-mint-600 transition-colors">info@timstuinen.nl</a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 bg-sage-100 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="map-pin" class="w-5 h-5 text-sage-600"></i>
+          </div>
+          <div>
+            <p class="font-semibold text-sage-800 text-sm mb-1">Werkgebied</p>
+            <p class="text-sage-500">Regio Heiloo, Alkmaar &amp; omstreken</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 bg-sage-100 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="clock" class="w-5 h-5 text-sage-600"></i>
+          </div>
+          <div>
+            <p class="font-semibold text-sage-800 text-sm mb-1">Bereikbaar</p>
+            <!-- PAS HIER DE OPENINGSTIJDEN AAN -->
+            <p class="text-sage-500">Ma–Vr: 8:00 – 18:00</p>
+          </div>
+        </div>
+
+        <!-- Sociale media -->
+        <div class="pt-4">
+          <p class="text-sage-400 text-xs font-semibold uppercase tracking-widest mb-3">Volg mij</p>
+          <div class="flex gap-3">
+            <!-- PAS HIER DE SOCIALE MEDIA LINKS AAN -->
+            <a href="#" class="w-9 h-9 bg-sage-100 hover:bg-sage-200 rounded-xl flex items-center justify-center transition-colors">
+              <i data-lucide="instagram" class="w-4 h-4 text-sage-600"></i>
+            </a>
+            <a href="#" class="w-9 h-9 bg-sage-100 hover:bg-sage-200 rounded-xl flex items-center justify-center transition-colors">
+              <i data-lucide="facebook" class="w-4 h-4 text-sage-600"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Contactformulier rechts -->
+      <!-- PAS HIER HET FORMULIER AAN (velden en labels) -->
+      <div class="reveal reveal-delay-1 md:col-span-3">
+        <div class="glass rounded-3xl p-8 shadow-lg">
+          <div data-fs-success class="hidden text-center py-8">
+            <div class="w-16 h-16 bg-mint-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="check-circle" class="w-8 h-8 text-mint-600"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold text-sage-900 mb-2">Bericht verstuurd! ✓</h3>
+            <p class="text-sage-500">Bedankt voor je bericht. Tim neemt zo snel mogelijk contact met je op.</p>
+          </div>
+
+          <div data-fs-error class="hidden text-center py-4 mb-4 bg-red-50 border border-red-200 rounded-2xl">
+            <p class="text-red-700 font-medium">Er is iets misgegaan. Controleer je gegevens en probeer het opnieuw.</p>
+          </div>
+
+          <form id="contact-form" class="space-y-5">
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sage-700 text-sm font-medium mb-1.5">Naam</label>
+                <input name="name" type="text" required placeholder="Jan Jansen" data-fs-field
+                  class="form-input w-full rounded-xl px-4 py-3 text-sage-800 placeholder-sage-300 text-sm" />
+                <span data-fs-error="name" class="text-red-600 text-xs mt-1 block"></span>
+              </div>
+              <div>
+                <label class="block text-sage-700 text-sm font-medium mb-1.5">E-mail</label>
+                <input name="email" type="email" required placeholder="jan@voorbeeld.nl" data-fs-field
+                  class="form-input w-full rounded-xl px-4 py-3 text-sage-800 placeholder-sage-300 text-sm" />
+                <span data-fs-error="email" class="text-red-600 text-xs mt-1 block"></span>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sage-700 text-sm font-medium mb-1.5">Onderwerp</label>
+              <select name="subject" class="form-input w-full rounded-xl px-4 py-3 text-sage-700 text-sm cursor-pointer" data-fs-field>
+                <option value="">Selecteer een onderwerp</option>
+                <option>Tuinaanleg – nieuw ontwerp</option>
+                <option>Veranda &amp; terras</option>
+                <option>Tuinonderhoud contract</option>
+                <option>Vrijblijvende offerte</option>
+                <option>Overig</option>
+              </select>
+              <span data-fs-error="subject" class="text-red-600 text-xs mt-1 block"></span>
+            </div>
+
+            <div>
+              <label class="block text-sage-700 text-sm font-medium mb-1.5">Bericht</label>
+              <textarea name="message" rows="5" required placeholder="Vertel ons over jouw tuin en wensen..." data-fs-field
+                class="form-input w-full rounded-xl px-4 py-3 text-sage-800 placeholder-sage-300 text-sm resize-none"></textarea>
+              <span data-fs-error="message" class="text-red-600 text-xs mt-1 block"></span>
+            </div>
+
+            <button type="submit" data-fs-submit-btn class="btn-primary text-white w-full py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 text-sm hover:opacity-90 transition-opacity disabled:opacity-50">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              Stuur mijn bericht
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════ -->
+<footer class="bg-sage-900 text-sage-300 py-12 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-sage-400 to-mint-500 flex items-center justify-center">
+          <i data-lucide="leaf" class="w-4 h-4 text-white"></i>
+        </div>
+        <!-- PAS HIER DE FOOTER-NAAM AAN -->
+        <span class="font-display font-bold text-white text-xl">Tim's Tuinen</span>
+      </div>
+
+      <!-- Footer nav -->
+      <div class="flex flex-wrap gap-6 text-sm">
+        <a href="#diensten"  class="hover:text-mint-400 transition-colors">Diensten</a>
+        <a href="#portfolio" class="hover:text-mint-400 transition-colors">Portfolio</a>
+        <a href="#reviews"   class="hover:text-mint-400 transition-colors">Reviews</a>
+        <a href="#contact"   class="hover:text-mint-400 transition-colors">Contact</a>
+      </div>
+
+      <!-- PAS HIER HET JAAR EN DE BEDRIJFSNAAM AAN -->
+      <p class="text-sage-500 text-sm">© 2025 Tim's Tuinen. Alle rechten voorbehouden.</p>
+
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT – scroll-reveal, nav, hamburger, form
+═══════════════════════════════════════════════════ -->
+<script>
+  // Initialiseer Lucide iconen
+  lucide.createIcons();
+
+  // ── Scroll-reveal observer ──────────────────────
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── Navbar shadow on scroll ─────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // ── Hamburger menu ──────────────────────────────
+  const hamburger   = document.getElementById('hamburger');
+  const mobileMenu  = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // Close menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target)) closeMobileMenu();
+  });
+
+  // ── Formspree Contact Form Initialization ──────
+  // Initialize the contact form with Formspree
+  window.addEventListener('load', function() {
+    formspree('initForm', { 
+      formElement: '#contact-form', 
+      formId: 'xaqvgyyw'
+    });
+  });
+</script>
+
+</body>
+</html>
