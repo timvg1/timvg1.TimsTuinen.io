@@ -412,7 +412,7 @@
         </div>
         <!-- PAS HIER DE NAAM EN FUNCTIETITEL AAN -->
         <div class="text-center">
-          <p class="font-display text-2xl font-bold text-sage-900">Tim van der Berg</p>
+          <p class="font-display text-2xl font-bold text-sage-900">Tim van Garderen</p>
           <p class="text-mint-600 font-medium">Hovenier & Eigenaar</p>
         </div>
         <!-- Badges -->
@@ -534,74 +534,82 @@
       <p class="text-sage-500 max-w-xl mx-auto text-lg font-light">Hier vindt u een selectie foto’s die onze expertise en passie voor tuinen perfect weergeven.</p>
     </div>
 
-    <!-- Portfolio grid – vervang de placeholder-blokken door echte foto's -->
-    <!-- PAS HIER DE PORTFOLIO-FOTO'S AAN: vervang elke placeholder-div door een <img src="..."> -->
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
-      <!-- Project 1 -->
-      <div class="reveal reveal-delay-1 portfolio-item col-span-2 md:col-span-2 h-72 md:h-96">
-        <div class="w-full h-full bg-gradient-to-br from-sage-200 to-mint-300 flex flex-col items-center justify-center gap-3">
-          <i data-lucide="image" class="w-10 h-10 text-sage-500"></i>
-          <!-- PAS HIER DE PROJECTNAAM AAN -->
-          <p class="text-sage-600 font-semibold">📸 Project 1 – Tuinaanleg Hilversum</p>
-          <p class="text-sage-400 text-xs">Voeg hier jouw foto in</p>
+      <button type="button" data-images="images/enkhuizen-1.jpg|images/enkhuizen-2.jpg|images/enkhuizen-3.jpg|images/enkhuizen-4.jpg" data-caption="Enkhuizen stadstuin" class="reveal reveal-delay-1 group overflow-hidden rounded-3xl bg-sage-100 shadow-sm transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-mint-300">
+        <div class="relative aspect-[4/3] overflow-hidden bg-sage-200">
+          <img src="images/enkhuizen-1.jpg" alt="Enkhuizen stadstuin" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
         </div>
-        <div class="overlay">
-          <p class="text-white font-display text-xl font-bold">Tuinaanleg Hilversum</p>
+        <div class="p-4 text-left">
+          <p class="text-sage-800 font-semibold">Project 1 — Enkhuizen</p>
+          <p class="text-sage-500 text-sm mt-1">Klik hier om de vier foto’s van deze compacte stadstuin te bekijken.</p>
         </div>
-      </div>
+      </button>
 
-      <!-- Project 2 -->
-      <div class="reveal reveal-delay-2 portfolio-item h-72 md:h-96">
-        <div class="w-full h-full bg-gradient-to-br from-mint-200 to-sage-300 flex flex-col items-center justify-center gap-3">
-          <i data-lucide="image" class="w-8 h-8 text-sage-500"></i>
-          <!-- PAS HIER DE PROJECTNAAM AAN -->
-          <p class="text-sage-600 font-semibold text-center text-sm px-4">📸 Project 2 – Terras Amsterdam</p>
+      <button type="button" data-full="images/project2.jpg" data-caption="Terras Amsterdam" class="reveal reveal-delay-2 group overflow-hidden rounded-3xl bg-sage-100 shadow-sm transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-mint-300">
+        <div class="relative aspect-[4/3] overflow-hidden bg-mint-200">
+          <img src="images/project2.jpg" alt="Terras Amsterdam" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
         </div>
-        <div class="overlay">
-          <p class="text-white font-display text-lg font-bold">Terras Amsterdam</p>
+        <div class="p-4 text-left">
+          <p class="text-sage-800 font-semibold">Project 2 — Terras Amsterdam</p>
+          <p class="text-sage-500 text-sm mt-1">Sfeervol terras met duurzame bestrating en groen.</p>
         </div>
-      </div>
+      </button>
 
-      <!-- Project 3 -->
-      <div class="reveal reveal-delay-1 portfolio-item h-60">
-        <div class="w-full h-full bg-gradient-to-br from-sage-100 to-sage-300 flex flex-col items-center justify-center gap-3">
-          <i data-lucide="image" class="w-8 h-8 text-sage-500"></i>
-          <p class="text-sage-600 font-semibold text-center text-sm px-4">📸 Project 3</p>
+      <button type="button" data-full="images/project3.jpg" data-caption="Veranda Almere" class="reveal reveal-delay-3 group overflow-hidden rounded-3xl bg-sage-100 shadow-sm transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-mint-300">
+        <div class="relative aspect-[4/3] overflow-hidden bg-sage-100">
+          <img src="images/project3.jpg" alt="Veranda Almere" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
         </div>
-        <div class="overlay">
-          <p class="text-white font-display text-lg font-bold">Veranda Almere</p>
+        <div class="p-4 text-left">
+          <p class="text-sage-800 font-semibold">Project 3 — Veranda Almere</p>
+          <p class="text-sage-500 text-sm mt-1">Comfortabele buitenruimte met stijlvolle afwerking.</p>
         </div>
-      </div>
+      </button>
 
-      <!-- Project 4 -->
-      <div class="reveal reveal-delay-2 portfolio-item h-60">
-        <div class="w-full h-full bg-gradient-to-br from-mint-100 to-mint-300 flex flex-col items-center justify-center gap-3">
-          <i data-lucide="image" class="w-8 h-8 text-mint-600"></i>
-          <p class="text-sage-600 font-semibold text-center text-sm px-4">📸 Project 4</p>
+      <button type="button" data-full="images/project4.jpg" data-caption="Onderhoud Amersfoort" class="reveal reveal-delay-4 group overflow-hidden rounded-3xl bg-sage-100 shadow-sm transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-mint-300">
+        <div class="relative aspect-[4/3] overflow-hidden bg-mint-100">
+          <img src="images/project4.jpg" alt="Onderhoud Amersfoort" class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" />
         </div>
-        <div class="overlay">
-          <p class="text-white font-display text-lg font-bold">Onderhoud Amersfoort</p>
+        <div class="p-4 text-left">
+          <p class="text-sage-800 font-semibold">Project 4 — Onderhoud Amersfoort</p>
+          <p class="text-sage-500 text-sm mt-1">Onderhoudsproject met frisse, duurzame tuinresultaten.</p>
         </div>
-      </div>
-
-      <!-- Project 5 -->
-      <div class="reveal reveal-delay-3 portfolio-item h-60">
-        <div class="w-full h-full bg-gradient-to-br from-sage-200 to-mint-200 flex flex-col items-center justify-center gap-3">
-          <i data-lucide="image" class="w-8 h-8 text-sage-500"></i>
-          <p class="text-sage-600 font-semibold text-center text-sm px-4">📸 Project 5</p>
-        </div>
-        <div class="overlay">
-          <p class="text-white font-display text-lg font-bold">Tuinaanleg Utrecht</p>
-        </div>
-      </div>
+      </button>
 
     </div>
 
     <div class="reveal text-center mt-10">
-      <p class="text-sage-400 text-sm">✨ Wil je meer projecten zien? Neem contact op voor ons volledige portfolio.</p>
+      <p class="text-sage-400 text-sm">✨ Wil je meer projecten zien? Bekijk ons volledige portfolio op <a href="https://www.instagram.com/tim.tuinen/" target="_blank" rel="noreferrer noopener" class="text-mint-500 hover:text-mint-600 underline">Instagram</a>.</p>
     </div>
 
+  </div>
+
+  <div id="portfolio-lightbox" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 py-8 opacity-0 invisible pointer-events-none transition-opacity duration-300">
+    <div class="relative w-full max-w-5xl">
+      <button type="button" id="lightbox-close" class="absolute top-4 right-4 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-mint-300" aria-label="Sluit lightbox">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <button type="button" id="lightbox-prev" class="absolute left-4 top-1/2 z-20 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-mint-300 hidden" aria-label="Vorige foto">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+      <button type="button" id="lightbox-next" class="absolute right-4 top-1/2 z-20 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-mint-300 hidden" aria-label="Volgende foto">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+      <div class="rounded-[2rem] overflow-hidden bg-slate-900/95 shadow-2xl">
+        <img id="lightbox-image" src="" alt="" class="w-full max-h-[80vh] object-contain bg-black" />
+        <div class="px-6 py-4 text-center bg-slate-950/80">
+          <p id="lightbox-caption" class="text-sage-100 text-sm"></p>
+          <p id="lightbox-counter" class="text-sage-400 text-xs mt-2"></p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -670,7 +678,7 @@
           </div>
           <div>
             <p class="font-semibold text-sage-800">Vivian</p>
-            <p class="text-sage-400 text-xs">Heiloo</p>
+            <p class="text-sage-400 text-xs">Oostwoud</p>
           </div>
           <i data-lucide="quote" class="w-8 h-8 text-sage-200 ml-auto"></i>
         </div>
@@ -689,7 +697,7 @@
           <div>
             <!-- PAS HIER DE NAAM EN LOCATIE AAN -->
             <p class="font-semibold text-sage-800">Susan</p>
-            <p class="text-sage-400 text-xs">Almere</p>
+            <p class="text-sage-400 text-xs">Midwoud</p>
           </div>
           <i data-lucide="quote" class="w-8 h-8 text-sage-200 ml-auto"></i>
         </div>
@@ -726,7 +734,7 @@
           <div>
             <p class="font-semibold text-sage-800 text-sm mb-1">Telefoon</p>
             <!-- PAS HIER HET TELEFOONNUMMER AAN -->
-            <a href="tel:+31612345678" class="text-sage-500 hover:text-mint-600 transition-colors">06-12 34 56 78</a>
+            <a href="tel:+31657008262" class="text-sage-500 hover:text-mint-600 transition-colors">06-57 00 82 62</a>
           </div>
         </div>
 
@@ -747,7 +755,7 @@
           </div>
           <div>
             <p class="font-semibold text-sage-800 text-sm mb-1">Werkgebied</p>
-            <p class="text-sage-500">Regio Heiloo, Alkmaar &amp; omstreken</p>
+            <p class="text-sage-500">Regio West-Friesland, Alkmaar &amp; omstreken</p>
           </div>
         </div>
 
@@ -766,12 +774,15 @@
         <div class="pt-4">
           <p class="text-sage-400 text-xs font-semibold uppercase tracking-widest mb-3">Volg mij</p>
           <div class="flex gap-3">
-            <!-- PAS HIER DE SOCIALE MEDIA LINKS AAN -->
-            <a href="#" class="w-9 h-9 bg-sage-100 hover:bg-sage-200 rounded-xl flex items-center justify-center transition-colors">
-              <i data-lucide="instagram" class="w-4 h-4 text-sage-600"></i>
+            <a href="https://www.instagram.com/tim.tuinen" target="_blank" rel="noopener noreferrer" aria-label="Instagram tim.tuinen" class="w-9 h-9 bg-sage-100 hover:bg-sage-200 rounded-xl flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram w-4 h-4 text-sage-600" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+              </svg>
             </a>
-            <a href="#" class="w-9 h-9 bg-sage-100 hover:bg-sage-200 rounded-xl flex items-center justify-center transition-colors">
-              <i data-lucide="facebook" class="w-4 h-4 text-sage-600"></i>
+            <a href="https://wa.me/31657008262" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Tim's Tuinen" class="w-9 h-9 bg-sage-100 hover:bg-sage-200 rounded-xl flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp w-4 h-4 text-sage-600" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+              </svg>
             </a>
           </div>
         </div>
@@ -817,8 +828,7 @@
                 <option value="">Selecteer een onderwerp</option>
                 <option>Tuinaanleg – nieuw ontwerp</option>
                 <option>Veranda &amp; terras</option>
-                <option>Tuinonderhoud contract</option>
-                <option>Vrijblijvende offerte</option>
+                <option>Tuinonderhoud</option>
                 <option>Overig</option>
               </select>
               <span data-fs-error="subject" class="text-red-600 text-xs mt-1 block"></span>
@@ -926,6 +936,97 @@
       formElement: '#contact-form', 
       formId: 'xaqvgyyw'
     });
+  });
+
+  // ── Portfolio lightbox
+  const lightbox = document.getElementById('portfolio-lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+
+  const portfolioButtons = document.querySelectorAll('[data-full], [data-images]');
+
+  let galleryImages = [];
+  let activeIndex = 0;
+
+  function updateLightbox() {
+    lightboxImage.src = galleryImages[activeIndex] || '';
+    lightboxCaption.textContent = lightboxImage.alt || lightboxCaption.textContent;
+    if (galleryImages.length > 1) {
+      lightboxCounter.textContent = `${activeIndex + 1} / ${galleryImages.length}`;
+      lightboxPrev.classList.remove('hidden');
+      lightboxNext.classList.remove('hidden');
+    } else {
+      lightboxCounter.textContent = '';
+      lightboxPrev.classList.add('hidden');
+      lightboxNext.classList.add('hidden');
+    }
+  }
+
+  function openLightbox(images, alt, caption, index = 0) {
+    galleryImages = Array.isArray(images) ? images : [images];
+    activeIndex = index;
+    lightboxImage.alt = alt;
+    lightboxCaption.textContent = caption;
+    updateLightbox();
+    lightbox.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+    lightbox.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+    lightbox.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+    lightboxImage.src = '';
+    lightboxImage.alt = '';
+    lightboxCaption.textContent = '';
+    lightboxCounter.textContent = '';
+    galleryImages = [];
+    activeIndex = 0;
+  }
+
+  function showPrevious() {
+    if (galleryImages.length <= 1) return;
+    activeIndex = (activeIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateLightbox();
+  }
+
+  function showNext() {
+    if (galleryImages.length <= 1) return;
+    activeIndex = (activeIndex + 1) % galleryImages.length;
+    updateLightbox();
+  }
+
+  portfolioButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const imagesData = button.dataset.images;
+      const caption = button.dataset.caption || '';
+      const alt = button.querySelector('img')?.alt || caption;
+      if (imagesData) {
+        const images = imagesData.split('|').map(src => src.trim()).filter(Boolean);
+        openLightbox(images, alt, caption, 0);
+      } else {
+        openLightbox(button.dataset.full, alt, caption, 0);
+      }
+    });
+  });
+
+  lightboxPrev.addEventListener('click', showPrevious);
+  lightboxNext.addEventListener('click', showNext);
+  lightboxClose.addEventListener('click', closeLightbox);
+
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lightbox.classList.contains('opacity-100')) {
+      closeLightbox();
+    }
   });
 </script>
 
