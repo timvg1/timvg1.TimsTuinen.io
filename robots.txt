@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://timstuinen.nl/sitemap.xml
