@@ -1,0 +1,235 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles from inline <style> tag */
+:root {
+  --sage-light: #e6ede6;
+  --sage-mid: #5e875b;
+  --mint-pop: #33a074;
+  --cream: #fafaf7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  color: #2a3328;
+  overflow-x: hidden;
+}
+
+/* Scroll-reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-delay-1 {
+  transition-delay: .1s;
+}
+
+.reveal-delay-2 {
+  transition-delay: .2s;
+}
+
+.reveal-delay-3 {
+  transition-delay: .3s;
+}
+
+.reveal-delay-4 {
+  transition-delay: .4s;
+}
+
+/* Glass card effects */
+.glass {
+  background: rgba(255, 255, 255, .55);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, .7);
+}
+
+.glass-dark {
+  background: rgba(90, 130, 86, .12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(130, 180, 120, .25);
+}
+
+/* Navbar blur effect */
+#navbar {
+  background: rgba(250, 250, 247, .75);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  border-bottom: 1px solid rgba(200, 220, 195, .4);
+  transition: box-shadow .3s;
+}
+
+#navbar.scrolled {
+  box-shadow: 0 4px 30px rgba(60, 100, 55, .10);
+}
+
+/* Hero background gradient */
+#hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(141, 213, 182, .35) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(170, 196, 168, .28) 0%, transparent 65%),
+    var(--cream);
+}
+
+/* Section alternate background */
+.bg-organic {
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 50%, rgba(141, 213, 182, .18) 0%, transparent 65%),
+    #f4f7f4;
+}
+
+/* Blob decoration animation */
+.blob {
+  border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+  animation: morphBlob 10s ease-in-out infinite alternate;
+}
+
+@keyframes morphBlob {
+  0% {
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+  }
+  50% {
+    border-radius: 45% 55% 38% 62% / 60% 40% 65% 35%;
+  }
+  100% {
+    border-radius: 58% 42% 48% 52% / 42% 62% 38% 58%;
+  }
+}
+
+/* Project grid */
+.projecten-item {
+  overflow: hidden;
+  border-radius: 1.25rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.projecten-item .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(51, 160, 116, .0) 50%, rgba(51, 160, 116, .75) 100%);
+  opacity: 0;
+  transition: opacity .4s;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.25rem;
+}
+
+.projecten-item:hover .overlay {
+  opacity: 1;
+}
+
+.projecten-item img {
+  transition: transform .5s;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projecten-item:hover img {
+  transform: scale(1.06);
+}
+
+/* Testimonial card */
+.testimonial-card {
+  transition: transform .3s, box-shadow .3s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(60, 100, 55, .12);
+}
+
+/* Service card */
+.service-card {
+  transition: transform .3s, box-shadow .3s;
+  background: rgba(255, 255, 255, .75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, .85);
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(60, 100, 55, .14);
+}
+
+.service-card .icon-wrap {
+  background: linear-gradient(135deg, #cddccc 0%, #bbe8d4 100%);
+  transition: transform .3s;
+}
+
+.service-card:hover .icon-wrap {
+  transform: scale(1.1) rotate(4deg);
+}
+
+/* Form inputs */
+.form-input {
+  background: rgba(255, 255, 255, .8);
+  border: 1.5px solid rgba(170, 196, 168, .5);
+  transition: border-color .25s, box-shadow .25s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--mint-pop);
+  box-shadow: 0 0 0 3px rgba(51, 160, 116, .15);
+}
+
+/* Mobile menu */
+#mobile-menu {
+  display: none;
+}
+
+#mobile-menu.open {
+  display: flex;
+}
+
+/* Star rating */
+.stars {
+  color: #f5a623;
+  letter-spacing: .05em;
+}
+
+/* CTA button */
+.btn-primary {
+  background: linear-gradient(135deg, #5e875b 0%, #33a074 100%);
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 6px 20px rgba(51, 160, 116, .35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(51, 160, 116, .45);
+}
+
+/* Divider leaf */
+.leaf-divider {
+  color: var(--sage-mid);
+  opacity: .35;
+}
+
+/* Certification badge */
+.cert-badge {
+  background: rgba(255, 255, 255, .6);
+  border: 1px solid rgba(141, 213, 182, .5);
+  backdrop-filter: blur(8px);
+}

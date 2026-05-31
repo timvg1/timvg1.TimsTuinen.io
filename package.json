@@ -1,0 +1,15 @@
+{
+  "name": "tims-tuinen",
+  "version": "1.0.0",
+  "description": "Tim's Tuinen - Professional landscaping website",
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/output.css --minify",
+    "watch:css": "tailwindcss -i ./css/input.css -o ./css/output.css --watch"
+  },
+  "keywords": ["landscaping", "gardening", "hovenier"],
+  "author": "Tim van Garderen",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
