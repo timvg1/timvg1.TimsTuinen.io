@@ -4,8 +4,6 @@
   <url>
     <loc>https://timstuinen.nl/</loc>
     <lastmod>2026-05-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
     <image:image>
       <image:loc>https://timstuinen.nl/images/heroimage.webp</image:loc>
       <image:title>Professionele tuinaanleg door Tim's Tuinen in West-Friesland</image:title>
@@ -15,5 +13,15 @@
       <image:loc>https://timstuinen.nl/images/logo.webp</image:loc>
       <image:title>Tim's Tuinen logo</image:title>
     </image:image>
+  </url>
+
+  <url>
+    <loc>https://timstuinen.nl/diensten/tuinaanleg/</loc>
+    <lastmod>2026-05-31</lastmod>
+  </url>
+
+  <url>
+    <loc>https://timstuinen.nl/diensten/tuinonderhoud/</loc>
+    <lastmod>2026-05-31</lastmod>
   </url>
 </urlset>
