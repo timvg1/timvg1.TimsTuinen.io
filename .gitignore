@@ -3,7 +3,7 @@ node_modules/
 package-lock.json
 
 # Build outputs
-css/output.css
+# css/output.css - INCLUDED in git (needed for production)
 
 # IDE
 .vscode/
