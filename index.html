@@ -277,6 +277,75 @@
   }
   </script>
 
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://timstuinen.nl/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Diensten",
+        "item": "https://timstuinen.nl/#diensten"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Over Tim",
+        "item": "https://timstuinen.nl/#over"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Contact",
+        "item": "https://timstuinen.nl/#contact"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Organization Schema (alternative representation) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Tim's Tuinen",
+    "alternateName": "Tim's Tuinen Hoveniers",
+    "url": "https://timstuinen.nl",
+    "logo": "https://timstuinen.nl/images/logo.webp",
+    "description": "Professionele hovenier gevestigd in Midwoud, gespecialiseerd in tuinaanleg, tuinonderhoud, veranda's en terrassen in West-Friesland",
+    "foundingDate": "2022",
+    "slogan": "Professionele tuinaanleg en tuinonderhoud in West-Friesland",
+    "knowsAbout": [
+      "Tuinaanleg",
+      "Tuinonderhoud",
+      "Veranda bouwen",
+      "Terrasaanleg",
+      "Tuinontwerp",
+      "Hoveniersdiensten",
+      "Grondbewerking",
+      "Beplanting",
+      "Schutting plaatsen"
+    ],
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "52.73330",
+        "longitude": "5.05000"
+      },
+      "geoRadius": "15000"
+    }
+  }
+  </script>
+
   <!-- Optimized TailwindCSS - Build-time compiled (26KB vs 300KB+ CDN) -->
   <link rel="stylesheet" href="css/output.css">
   <!-- Preload hero image for faster LCP -->
