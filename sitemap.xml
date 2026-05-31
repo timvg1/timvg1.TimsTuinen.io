@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://timstuinen.nl/</loc>
-    <lastmod>2026-05-19</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-31</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://timstuinen.nl/images/heroimage.webp</image:loc>
+      <image:title>Professionele tuinaanleg door Tim's Tuinen in West-Friesland</image:title>
+      <image:caption>Hovenier Tim's Tuinen - Tuinaanleg en tuinonderhoud in Medemblik, Wognum, Enkhuizen</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://timstuinen.nl/images/logo.webp</image:loc>
+      <image:title>Tim's Tuinen logo</image:title>
+    </image:image>
   </url>
 </urlset>
