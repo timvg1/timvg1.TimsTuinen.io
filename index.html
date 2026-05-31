@@ -128,9 +128,14 @@
       }
     }
   </script>
+  <!-- Preload hero image for faster LCP -->
+  <link rel="preload" as="image" href="images/heroimage.webp" fetchpriority="high">
+
+  <!-- Async load fonts to prevent render blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"></noscript>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -371,7 +376,7 @@
       
       <div class="reveal reveal-delay-1 relative mx-auto max-w-md md:max-w-lg lg:max-w-none">
         <div class="aspect-[3/4] md:aspect-[4/5] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl relative z-10">
-          <img src="images/heroimage.webp" alt="Professionele tuinaanleg door hovenier Tim's Tuinen in West-Friesland" class="w-full h-full object-cover object-center" loading="lazy" srcset="images/heroimage.webp 864w" sizes="(max-width: 768px) 100vw, 50vw" width="864" height="1152">
+          <img src="images/heroimage.webp" alt="Professionele tuinaanleg door hovenier Tim's Tuinen in West-Friesland" class="w-full h-full object-cover object-center" loading="eager" fetchpriority="high" srcset="images/heroimage.webp 864w" sizes="(max-width: 768px) 100vw, 50vw" width="864" height="1152">
           <div class="absolute inset-0 bg-gradient-to-t from-sage-900/40 to-transparent"></div>
         </div>
         <div class="absolute -bottom-8 -right-8 w-40 h-40 lg:w-48 lg:h-48 bg-cream border-6 lg:border-8 border-white rounded-[1.5rem] lg:rounded-[2rem] shadow-xl z-20 overflow-hidden hidden lg:block">
