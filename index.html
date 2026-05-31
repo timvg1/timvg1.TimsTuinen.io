@@ -901,18 +901,18 @@
 <!-- Certificaten / Kwaliteit Modal -->
 <div id="cert-modal" class="fixed inset-0 z-50 flex items-center justify-center px-4 hidden">
   <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeCertModal()"></div>
-  <div class="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl z-10">
+  <div class="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl z-10 max-h-[90vh] flex flex-col">
     <button onclick="closeCertModal()" class="absolute top-4 right-4 w-8 h-8 bg-sage-100 hover:bg-sage-200 rounded-full flex items-center justify-center transition-colors">
       <i data-lucide="x" class="w-4 h-4 text-sage-700"></i>
     </button>
-    <div class="text-center mb-6">
+    <div class="flex-shrink-0 text-center mb-6">
       <div class="w-14 h-14 bg-gradient-to-br from-sage-200 to-mint-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
         <i data-lucide="graduation-cap" class="w-7 h-7 text-sage-700"></i>
       </div>
       <h3 class="font-display text-2xl font-bold text-sage-900">Diploma &amp; Kwaliteit</h3>
       <p class="text-sage-500 text-sm mt-1">Bewezen vakmanschap, aantoonbare kwaliteit</p>
     </div>
-    <div class="space-y-4">
+    <div class="space-y-4 overflow-y-auto flex-1 min-h-0">
       <div class="glass-dark rounded-2xl p-4 flex items-start gap-3">
         <i data-lucide="badge-check" class="w-5 h-5 text-mint-500 shrink-0 mt-0.5"></i>
         <div>
@@ -935,7 +935,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-6 text-center">
+    <div class="mt-6 text-center flex-shrink-0">
       <a href="#contact" onclick="closeCertModal()" class="btn-primary text-white px-6 py-3 rounded-full font-semibold text-sm inline-flex items-center gap-2">
         <i data-lucide="phone" class="w-4 h-4"></i>
         Neem contact op
@@ -948,18 +948,18 @@
 <!-- Tuinaanleg Modal -->
 <div id="modal-tuinaanleg" class="fixed inset-0 z-50 flex items-center justify-center px-4 hidden">
   <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeServiceModal('tuinaanleg')"></div>
-  <div class="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl z-10">
+  <div class="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl z-10 max-h-[90vh] flex flex-col">
     <button onclick="closeServiceModal('tuinaanleg')" class="absolute top-4 right-4 w-8 h-8 bg-sage-100 hover:bg-sage-200 rounded-full flex items-center justify-center transition-colors">
       <i data-lucide="x" class="w-4 h-4 text-sage-700"></i>
     </button>
-    <div class="text-center mb-6">
+    <div class="flex-shrink-0 text-center mb-6">
       <div class="w-14 h-14 bg-gradient-to-br from-sage-200 to-mint-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
         <i data-lucide="shovel" class="w-7 h-7 text-sage-700"></i>
       </div>
       <h3 class="font-display text-2xl font-bold text-sage-900">Tuinaanleg</h3>
       <p class="text-sage-500 text-sm mt-1">Professionele tuinaanleg in West-Friesland</p>
     </div>
-    <div class="space-y-4">
+    <div class="space-y-4 overflow-y-auto flex-1 min-h-0">
       <div class="glass-dark rounded-2xl p-4 flex items-start gap-3">
         <i data-lucide="layout" class="w-5 h-5 text-mint-500 shrink-0 mt-0.5"></i>
         <div>
@@ -989,7 +989,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-6 text-center">
+    <div class="mt-6 text-center flex-shrink-0">
       <a href="#contact" onclick="closeServiceModal('tuinaanleg')" class="btn-primary text-white px-6 py-3 rounded-full font-semibold text-sm inline-flex items-center gap-2">
         <i data-lucide="phone" class="w-4 h-4"></i>
         Vraag offerte aan
@@ -1001,18 +1001,18 @@
 <!-- Veranda & Terras Modal -->
 <div id="modal-veranda" class="fixed inset-0 z-50 flex items-center justify-center px-4 hidden">
   <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeServiceModal('veranda')"></div>
-  <div class="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl z-10">
+  <div class="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl z-10 max-h-[90vh] flex flex-col">
     <button onclick="closeServiceModal('veranda')" class="absolute top-4 right-4 w-8 h-8 bg-sage-100 hover:bg-sage-200 rounded-full flex items-center justify-center transition-colors">
       <i data-lucide="x" class="w-4 h-4 text-sage-700"></i>
     </button>
-    <div class="text-center mb-6">
+    <div class="flex-shrink-0 text-center mb-6">
       <div class="w-14 h-14 bg-gradient-to-br from-sage-200 to-mint-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
         <i data-lucide="home" class="w-7 h-7 text-sage-700"></i>
       </div>
       <h3 class="font-display text-2xl font-bold text-sage-900">Veranda &amp; Terras</h3>
       <p class="text-sage-500 text-sm mt-1">Duurzame buitenruimtes in West-Friesland</p>
     </div>
-    <div class="space-y-4">
+    <div class="space-y-4 overflow-y-auto flex-1 min-h-0">
       <div class="glass-dark rounded-2xl p-4 flex items-start gap-3">
         <i data-lucide="trees" class="w-5 h-5 text-mint-500 shrink-0 mt-0.5"></i>
         <div>
@@ -1042,7 +1042,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-6 text-center">
+    <div class="mt-6 text-center flex-shrink-0">
       <a href="#contact" onclick="closeServiceModal('veranda')" class="btn-primary text-white px-6 py-3 rounded-full font-semibold text-sm inline-flex items-center gap-2">
         <i data-lucide="phone" class="w-4 h-4"></i>
         Vraag offerte aan
@@ -1054,18 +1054,18 @@
 <!-- Tuinonderhoud Modal -->
 <div id="modal-tuinonderhoud" class="fixed inset-0 z-50 flex items-center justify-center px-4 hidden">
   <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeServiceModal('tuinonderhoud')"></div>
-  <div class="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl z-10">
+  <div class="relative bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl z-10 max-h-[90vh] flex flex-col">
     <button onclick="closeServiceModal('tuinonderhoud')" class="absolute top-4 right-4 w-8 h-8 bg-sage-100 hover:bg-sage-200 rounded-full flex items-center justify-center transition-colors">
       <i data-lucide="x" class="w-4 h-4 text-sage-700"></i>
     </button>
-    <div class="text-center mb-6">
+    <div class="flex-shrink-0 text-center mb-6">
       <div class="w-14 h-14 bg-gradient-to-br from-sage-200 to-mint-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
         <i data-lucide="scissors" class="w-7 h-7 text-sage-700"></i>
       </div>
       <h3 class="font-display text-2xl font-bold text-sage-900">Tuinonderhoud</h3>
       <p class="text-sage-500 text-sm mt-1">Professioneel tuinonderhoud in West-Friesland</p>
     </div>
-    <div class="space-y-4">
+    <div class="space-y-4 overflow-y-auto flex-1 min-h-0">
       <div class="glass-dark rounded-2xl p-4 flex items-start gap-3">
         <i data-lucide="scissors" class="w-5 h-5 text-mint-500 shrink-0 mt-0.5"></i>
         <div>
@@ -1095,7 +1095,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-6 text-center">
+    <div class="mt-6 text-center flex-shrink-0">
       <a href="#contact" onclick="closeServiceModal('tuinonderhoud')" class="btn-primary text-white px-6 py-3 rounded-full font-semibold text-sm inline-flex items-center gap-2">
         <i data-lucide="phone" class="w-4 h-4"></i>
         Vraag offerte aan
